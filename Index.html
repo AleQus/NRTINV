@@ -1,42 +1,50 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset="utf-8">
 	<title>재고 현황</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="style.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</head>
-<body>
-	<header>
-		<nav class="navbar navbar-inverse">
-			<div class="container-fluid">
-				<div class="navbar-header">
-					<a class="navbar-brand" href="#">재고 현황</a>
-				</div>
-				<ul class="nav navbar-nav">
-					<li class="active"><a href="#nwf">NWF 타입</a></li>
-					<li><a href="#liner">Liner 재고내역</a></li>
-				</ul>
-			</div>
-		</nav>
-	</header>
-	
-	<section id="nwf" class="container-fluid">
-		<h2>NWF 타입</h2>
-		<?php include('nwf.php'); ?>
-	</section>
-
-	<section id="liner" class="container-fluid">
-		<h2>Liner 재고내역</h2>
-		<?php include('liner.php'); ?>
-	</section>
-
-	<footer>
-		<p>&copy; 2023, 재고 현황</p>
-	</footer>
-
-</body>
-</html>
+	<script>
+		let NWFData = [
+			{name: "제품1", date: "2023-04-17", width: 10, thickness: 20, length: 30, location: "보관장소1"},
+			{name: "제품2", date: "2023-04-16", width: 20, thickness: 30, length: 40, location: "보관장소2"},
+			{name: "제품3", date: "2023-04-15", width: 30, thickness: 40, length: 50, location: "보관장소3"}
+		];
+		let linerData = [
+			{name: "제품4", date: "2023-04-14", width: 40, thickness: 50, length: 60, location: "보관장소4", quantity: 10},
+			{name: "제품5", date: "2023-04-13", width: 50, thickness: 60, length: 70, location: "보관장소5", quantity: 20},
+			{name: "제품6", date: "2023-04-12", width: 60, thickness: 70, length: 80, location: "보관장소6", quantity: 30}
+		];
+		function showNWF() {
+			document.getElementById("linerTable").style.display = "none";
+			document.getElementById("nwfTable").style.display = "block";
+			let tableBody = document.getElementById("nwfTableBody");
+			tableBody.innerHTML = "";
+			for (let i = 0; i < NWFData.length; i++) {
+				let row = tableBody.insertRow(i);
+				let nameCell = row.insertCell(0);
+				let dateCell = row.insertCell(1);
+				let widthCell = row.insertCell(2);
+				let thicknessCell = row.insertCell(3);
+				let lengthCell = row.insertCell(4);
+				let locationCell = row.insertCell(5);
+				nameCell.innerHTML = NWFData[i].name;
+				dateCell.innerHTML = NWFData[i].date;
+				widthCell.innerHTML = NWFData[i].width;
+				thicknessCell.innerHTML = NWFData[i].thickness;
+				lengthCell.innerHTML = NWFData[i].length;
+				locationCell.innerHTML = NWFData[i].location;
+			}
+		}
+		function showLiner() {
+			document.getElementById("nwfTable").style.display = "none";
+			document.getElementById("linerTable").style.display = "block";
+			let tableBody = document.getElementById("linerTableBody");
+			tableBody.innerHTML = "";
+			for (let i = 0; i < linerData.length; i++) {
+				let row = tableBody.insertRow(i);
+				let nameCell = row.insertCell(0);
+				let dateCell = row.insertCell(1);
+				let widthCell = row.insertCell(2);
+				let thicknessCell = row.insertCell(3);
+				let quantityCell = row.insertCell(4);
+				let lengthCell = row.insertCell
